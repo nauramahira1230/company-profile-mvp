@@ -1,0 +1,30 @@
+{
+  "stats": [
+    { "label": "Mahasiswa Timur Terbantu", "value": "314" },
+    { "label": "Kost Terverifikasi", "value": "68" },
+    { "label": "Area Bali", "value": "7" }
+  ],
+  "team": [
+    {
+      "id": 1,
+      "name": "Sefina Nur Fatimah",
+      "role": "Project Lead",
+      "slug": "sefina",
+      "bio": "Sebagai salah satu mahasiswa universitas di bali, saya fokus memastikan konsep KOSTIN ini menjadi solusi bagi teman-teman Timur saya di kampus, dari mulai perancangan hingga aplikasi siap dipakai."
+    },
+    {
+      "id": 2,
+      "name": "Mesa Melinda",
+      "role": "Lead Developer",
+      "slug": "mesa",
+      "bio": "Saya sebagai bagian teknis, fokus kepada sistem aplikasi agar stabil, dan memudahkan teman-teman semua saat memakai aplikasi ini."
+    },
+    {
+      "id": 3,
+      "name": "Naura Mahira",
+      "role": "Operations & Data Manager",
+      "slug": "naura",
+      "bio": "Saya sebagai ujung tombak dari aplikasi ini yang merapihkan database dan verifikasi lapangan agar kost yang terdaftar di aplikasi benar-benar sesuai dengan aslinya."
+    }
+  ]
+}
