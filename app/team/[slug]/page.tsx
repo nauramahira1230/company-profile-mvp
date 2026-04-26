@@ -12,7 +12,7 @@ export default async function TeamDetailPage({ params }: { params: Promise<{ slu
   return (
     <div className="min-h-screen bg-slate-50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] flex items-center justify-center py-20 px-6">
       <div className="relative w-full max-w-md">
-        {/* Dekorasi Aksen Halus di Belakang */}
+        {}
         <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-900/5 rounded-full blur-3xl"></div>
 
         <div className="relative bg-white border border-blue-100 rounded-[2.5rem] shadow-2xl shadow-blue-950/10 overflow-hidden">

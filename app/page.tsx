@@ -2,22 +2,18 @@ import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
 
-// Definisi Struktur Data (TypeScript Interface) - Kerapian Kode
 interface CompanyData {
   stats: { label: string; value: string }[];
   team: { id: number; name: string; role: string; slug: string }[];
 }
 
-// Fungsi Ambil Data dari JSON - Poin Data Fetching (Server Side)
 async function getCompanyData(): Promise<CompanyData> {
   const filePath = path.join(process.cwd(), "data", "company.json");
-  // Mengecek apakah file ada untuk menghindari error runtime
   try {
     const fileContent = await fs.readFile(filePath, "utf8");
     return JSON.parse(fileContent);
   } catch (error) {
     console.error("Gagal membaca company.json:", error);
-    // Kembalikan data default jika gagal membaca file
     return { stats: [], team: [] };
   }
 }
@@ -27,9 +23,9 @@ export default async function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {/* 1. HERO SECTION - TEMA TRUE NAVY */}
+      {}
       <section className="relative h-[70vh] flex items-center text-white bg-blue-950">
-        {/* Gambar Overlay dengan transparansi agar teks terbaca */}
+        {}
         <div className="absolute inset-0 opacity-40 bg-[url('/images/hero-bali.jpg')] bg-cover bg-center"></div>
 
         <div className="relative max-w-7xl mx-auto px-6 z-10">
@@ -45,7 +41,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 2. STATS SECTION - AKSEN NAVY */}
+      {}
       <section className="py-20 bg-white border-b border-blue-50">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           {stats.map((s, i) => (
@@ -57,7 +53,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 3. TEAM SECTION - DENGAN EFEK GRADASI SAAT HOVER */}
+      {}
       <section className="py-28 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16 max-w-xl">
@@ -72,14 +68,14 @@ export default async function HomePage() {
                            hover:shadow-2xl hover:border-blue-100 active:scale-[0.98]
                            hover:bg-gradient-to-br hover:from-white hover:to-blue-50 active:bg-gradient-to-br active:from-white active:to-blue-100"
               >
-                {/* Bagian Atas Kartu (Ikon & Teks) */}
+                {}
                 <div className="flex flex-col h-full">
                   <div className="w-16 h-16 bg-blue-50 text-blue-900 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-blue-950 group-hover:text-white transition-colors duration-300">👤</div>
 
                   <h3 className="text-2xl font-bold text-blue-950 group-hover:text-blue-900 transition-colors">{t.name}</h3>
                   <p className="text-blue-600 font-semibold mb-8 text-sm uppercase tracking-wide">{t.role}</p>
 
-                  {/* Link di Bagian Bawah Kartu */}
+                  {}
                   <div className="mt-auto pt-6 border-t border-blue-50 group-hover:border-blue-100">
                     <Link href={`/team/${t.slug}`} className="text-blue-700 font-bold hover:text-blue-500 hover:underline transition-colors flex items-center gap-2">
                       Profil Lengkap <span className="group-hover:translate-x-1 transition-transform">→</span>

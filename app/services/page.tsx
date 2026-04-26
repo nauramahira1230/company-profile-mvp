@@ -23,7 +23,6 @@ export default function ServicesPage() {
   ];
 
   return (
-    // Background dengan pola dot subtle agar tidak "full white"
     <div className="min-h-screen bg-slate-50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header Section */}
@@ -49,7 +48,7 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {/* Footer Kecil di Halaman Services */}
+        {}
         <div className="mt-20 pt-10 border-t border-slate-200 text-center"></div>
       </div>
     </div>

@@ -21,7 +21,7 @@ export default function Navbar() {
           🏠 KOSTIN
         </Link>
 
-        {/* Menu Tengah dengan Logic Active Link */}
+        {}
         <ul className="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -35,7 +35,7 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Tombol CTA */}
+        {}
         <Link href="/contact" className="bg-blue-950 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-blue-900 transition shadow-lg shadow-blue-900/10 active:scale-95">
           Hubungi Kami
         </Link>
