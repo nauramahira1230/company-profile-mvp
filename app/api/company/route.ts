@@ -4,14 +4,10 @@ import path from "path";
 
 export async function GET() {
   try {
-    // Membaca data dari file JSON lokal
     const filePath = path.join(process.cwd(), "data", "company.json");
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const data = JSON.parse(fileContent);
-
-    // Mengirimkan data sebagai API Response
+    const data = JSON.parse(await fs.readFile(filePath, "utf8"));
     return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json({ error: "Gagal mengambil data" }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: "Gagal ambil data" }, { status: 500 });
   }
 }

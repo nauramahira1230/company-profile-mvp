@@ -1,51 +1,55 @@
 import { promises as fs } from "fs";
 import path from "path";
 
-interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  slug: string;
-  bio: string;
-}
-
-// Tambahkan Promise pada tipe params
 export default async function TeamDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  // 1. UNWRAP PARAMS (Wajib di Next.js versi terbaru)
-  const resolvedParams = await params;
-  const slug = resolvedParams.slug.toLowerCase();
-
-  // 2. DATA FETCHING DARI FILE JSON (Kriteria Nilai 20%)
+  const { slug } = await params;
   const filePath = path.join(process.cwd(), "data", "company.json");
-  const fileContent = await fs.readFile(filePath, "utf8");
-  const data = JSON.parse(fileContent);
+  const data = JSON.parse(await fs.readFile(filePath, "utf8"));
+  const person = data.team.find((m: any) => m.slug === slug);
 
-  // 3. MENCARI ANGGOTA BERDASARKAN SLUG
-  const person = data.team.find((m: TeamMember) => m.slug === slug);
+  if (!person) return <div className="py-20 text-center">Data tidak ditemukan.</div>;
 
-  // ❌ Kalau data tidak ditemukan
-  if (!person) {
-    return <div className="py-20 text-center text-red-500 font-semibold italic">Data anggota "{slug}" tidak ditemukan. Pastikan slug di JSON sudah benar.</div>;
-  }
-
-  // ✅ TAMPILAN DETAIL DENGAN TEMA NAVY
   return (
-    <div className="max-w-2xl mx-auto py-20 px-6 text-center">
-      <div className="bg-white p-10 rounded-3xl shadow-lg border border-slate-100">
-        <div className="w-24 h-24 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-4xl mb-6 border border-slate-200">👤</div>
+    <div className="min-h-screen bg-slate-50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] flex items-center justify-center py-20 px-6">
+      <div className="relative w-full max-w-md">
+        {/* Dekorasi Aksen Halus di Belakang */}
+        <div className="absolute -top-6 -right-6 w-32 h-32 bg-blue-900/5 rounded-full blur-3xl"></div>
 
-        <h1 className="text-3xl font-bold text-slate-900">{person.name}</h1>
+        <div className="relative bg-white border border-blue-100 rounded-[2.5rem] shadow-2xl shadow-blue-950/10 overflow-hidden">
+          {/* Header Card Navy Solid */}
+          <div className="h-32 bg-blue-950 flex items-center justify-center">
+            <div className="w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+          </div>
 
-        <p className="text-slate-600 font-bold mt-2 uppercase tracking-wide text-sm">{person.role}</p>
+          {/* Avatar Profile */}
+          <div className="relative -mt-14 flex justify-center">
+            <div className="w-28 h-28 bg-white p-2 rounded-3xl shadow-xl">
+              <div className="w-full h-full bg-blue-950 rounded-2xl flex items-center justify-center text-4xl text-white shadow-inner">👤</div>
+            </div>
+          </div>
 
-        <div className="w-16 h-1 bg-slate-900 mx-auto my-6 rounded-full opacity-20"></div>
+          {/* Konten Profil */}
+          <div className="p-10 pt-6 text-center">
+            <h1 className="text-3xl font-black text-blue-950 tracking-tight">{person.name}</h1>
 
-        <p className="text-slate-600 italic leading-relaxed text-lg">"{person.bio}"</p>
+            <div className="inline-block mt-3 px-5 py-1.5 bg-blue-50 rounded-full border border-blue-100">
+              <p className="text-blue-700 font-extrabold uppercase tracking-widest text-[10px]">{person.role}</p>
+            </div>
 
-        <div className="mt-10">
-          <a href="/" className="text-slate-500 hover:text-slate-900 text-sm font-semibold transition">
-            ← Kembali ke Beranda
-          </a>
+            {/* Bio Section */}
+            <div className="mt-10 mb-6 relative">
+              <span className="absolute -top-6 left-0 text-7xl text-blue-100 font-serif opacity-40">“</span>
+              <p className="relative z-10 text-slate-600 leading-relaxed italic text-lg px-2">{person.bio}</p>
+              <span className="absolute -bottom-12 right-0 text-7xl text-blue-100 font-serif opacity-40">”</span>
+            </div>
+
+            {/* Navigasi Footer */}
+            <div className="mt-16 pt-8 border-t border-slate-50">
+              <a href="/" className="text-xs font-black text-slate-400 hover:text-blue-950 tracking-widest transition-all flex items-center justify-center gap-2 group">
+                <span className="group-hover:-translate-x-1 transition-transform">←</span> KEMBALI KE BERANDA
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

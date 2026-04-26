@@ -2,27 +2,24 @@ import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
 
-interface Stat {
-  label: string;
-  value: string;
-}
-
-interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  slug: string;
-}
-
+// Definisi Struktur Data (TypeScript Interface) - Kerapian Kode
 interface CompanyData {
-  stats: Stat[];
-  team: TeamMember[];
+  stats: { label: string; value: string }[];
+  team: { id: number; name: string; role: string; slug: string }[];
 }
 
+// Fungsi Ambil Data dari JSON - Poin Data Fetching (Server Side)
 async function getCompanyData(): Promise<CompanyData> {
   const filePath = path.join(process.cwd(), "data", "company.json");
-  const file = await fs.readFile(filePath, "utf8");
-  return JSON.parse(file);
+  // Mengecek apakah file ada untuk menghindari error runtime
+  try {
+    const fileContent = await fs.readFile(filePath, "utf8");
+    return JSON.parse(fileContent);
+  } catch (error) {
+    console.error("Gagal membaca company.json:", error);
+    // Kembalikan data default jika gagal membaca file
+    return { stats: [], team: [] };
+  }
 }
 
 export default async function HomePage() {
@@ -30,76 +27,69 @@ export default async function HomePage() {
 
   return (
     <div className="overflow-hidden">
-      {}
-      <section className="relative h-[60vh] md:h-[70vh] text-white">
-        <div className="absolute inset-0">
-          <img src="/images/hero.jpg" alt="Hero" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 to-slate-900/50"></div>
-        </div>
+      {/* 1. HERO SECTION - TEMA TRUE NAVY */}
+      <section className="relative h-[70vh] flex items-center text-white bg-blue-950">
+        {/* Gambar Overlay dengan transparansi agar teks terbaca */}
+        <div className="absolute inset-0 opacity-40 bg-[url('/images/hero-bali.jpg')] bg-cover bg-center"></div>
 
-        <div className="relative max-w-7xl mx-auto px-6 h-full flex items-center">
-          <div className="max-w-xl">
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-5">
-              Hunian Nyaman <br />
-              <span className="text-slate-300">Tanpa Ribet</span>
+        <div className="relative max-w-7xl mx-auto px-6 z-10">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-5 tracking-tighter">
+              Cari Kost di Bali <br /> Jadi Lebih Gampang
             </h1>
-            <p className="text-base md:text-lg text-gray-200 mb-6 leading-relaxed">KOSTIN membantu mahasiswa menemukan kost terbaik dengan cepat, aman, dan terpercaya di seluruh Indonesia.</p>
-            <div className="flex gap-4">
-              <Link href="/services" className="bg-slate-800 border border-slate-700 px-6 py-3 rounded-full font-semibold hover:bg-slate-700 transition shadow-lg">
-                Lihat Layanan
-              </Link>
-              <Link href="/about" className="border border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-black transition">
-                Tentang Kami
-              </Link>
+            <p className="text-lg md:text-xl text-blue-100 max-w-xl mb-10 leading-relaxed">KOSTIN hadir khusus buat temen-temen mahasiswa Timur yang lagi nyari hunian nyaman, aman, dan terverifikasi di area Bali.</p>
+            <Link href="/services" className="inline-block bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-2xl shadow-blue-500/20 active:scale-95">
+              Cek Layanan Kami →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. STATS SECTION - AKSEN NAVY */}
+      <section className="py-20 bg-white border-b border-blue-50">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          {stats.map((s, i) => (
+            <div key={i} className="p-6">
+              <p className="text-5xl font-extrabold text-blue-950 tracking-tighter mb-3">{s.value}</p>
+              <p className="text-blue-600 text-sm uppercase font-bold tracking-widest">{s.label}</p>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {}
-      <section className="py-12 bg-white border-b border-slate-100">
+      {/* 3. TEAM SECTION - DENGAN EFEK GRADASI SAAT HOVER */}
+      <section className="py-28 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
-            {stats.map((s, i) => (
-              <div key={i}>
-                <p className="text-3xl font-bold text-slate-900">{s.value}</p>
-                <p className="text-slate-500 text-sm uppercase tracking-widest font-medium">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900">Tim Kami</h2>
-            <p className="text-slate-500 mt-2">Orang-orang hebat di balik KOSTIN</p>
+          <div className="mb-16 max-w-xl">
+            <h2 className="text-4xl font-extrabold text-blue-950 tracking-tight">Tim Pengembang</h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {team.map((t) => (
-              <div key={t.id} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition text-center">
-                <div className="w-20 h-20 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-3xl mb-4">👤</div>
-                <h3 className="text-lg font-bold text-slate-900">{t.name}</h3>
-                <p className="text-slate-500 text-sm mb-4 font-medium">{t.role}</p>
-                <Link href={`/team/${t.slug}`} className="text-slate-900 text-sm font-bold hover:underline">
-                  Profil Lengkap →
-                </Link>
+              <div
+                key={t.id}
+                className="bg-white p-10 rounded-[2rem] border border-blue-50 shadow-sm group transition-all duration-300 transform 
+                           hover:shadow-2xl hover:border-blue-100 active:scale-[0.98]
+                           hover:bg-gradient-to-br hover:from-white hover:to-blue-50 active:bg-gradient-to-br active:from-white active:to-blue-100"
+              >
+                {/* Bagian Atas Kartu (Ikon & Teks) */}
+                <div className="flex flex-col h-full">
+                  <div className="w-16 h-16 bg-blue-50 text-blue-900 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-blue-950 group-hover:text-white transition-colors duration-300">👤</div>
+
+                  <h3 className="text-2xl font-bold text-blue-950 group-hover:text-blue-900 transition-colors">{t.name}</h3>
+                  <p className="text-blue-600 font-semibold mb-8 text-sm uppercase tracking-wide">{t.role}</p>
+
+                  {/* Link di Bagian Bawah Kartu */}
+                  <div className="mt-auto pt-6 border-t border-blue-50 group-hover:border-blue-100">
+                    <Link href={`/team/${t.slug}`} className="text-blue-700 font-bold hover:text-blue-500 hover:underline transition-colors flex items-center gap-2">
+                      Profil Lengkap <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
-
-      {}
-      <section className="py-20 bg-slate-900 text-white text-center">
-        <h2 className="text-3xl font-bold mb-4">Tertarik Bergabung?</h2>
-        <p className="mb-8 text-slate-300">Hubungi kami dan mulai perjalanan hunian modern bersama KOSTIN.</p>
-        <Link href="/contact" className="bg-white text-slate-900 px-8 py-3 rounded-full font-bold hover:bg-slate-200 transition shadow-xl">
-          Hubungi Kami
-        </Link>
       </section>
     </div>
   );

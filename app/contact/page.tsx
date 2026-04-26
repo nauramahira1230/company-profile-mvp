@@ -1,83 +1,84 @@
-"use client"; //  WAJIB: Menandakan ini adalah Client Component agar poin rubrik 20% aman
-
-import { useState } from "react"; //  Menggunakan hook untuk interaksi sesuai kriteria
+"use client";
+import { useState } from "react";
 
 export default function ContactPage() {
-  // State untuk menangani interaksi kirim pesan
   const [isSent, setIsSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSent(true); // Simulasi interaksi sukses
+    setIsSent(true);
   };
 
   return (
-    <div className="py-20">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Form Section - Warna Navy (slate-900) */}
-          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
-            <h2 className="text-2xl font-bold mb-6 text-slate-900">Kirim Pesan</h2>
+    // Background dengan pola dot subtle agar tidak "full white"
+    <div className="min-h-screen bg-slate-50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] py-24 flex items-center">
+      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+        {/* SISI KIRI: INFORMASI KONTAK */}
+        <div>
+          <h1 className="text-4xl md:text-5xl font-black text-blue-950 tracking-tight mb-6">
+            Ada Kendala? <br /> Kabari Kami.
+          </h1>
+          <p className="text-lg text-slate-600 leading-relaxed mb-10 font-medium">Tim KOSTIN siap bantu kalau kamu bingung cara pakai aplikasi atau mau tanya-tanya soal kost tertentu di Bali. Nggak perlu sungkan, langsung chat aja.</p>
 
+          <div className="space-y-6">
+            <div className="flex items-center gap-5 p-6 bg-white rounded-3xl border border-blue-50 shadow-sm">
+              <div className="text-3xl">📧</div>
+              <div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Email Resmi</p>
+                <p className="text-blue-950 font-black">halo@kostin.id</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-5 p-6 bg-white rounded-3xl border border-blue-50 shadow-sm">
+              <div className="text-3xl">💬</div>
+              <div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">WhatsApp Admin</p>
+                <p className="text-blue-950 font-black">+62 812-3456-7890</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* SISI KANAN: FORMULIR KONTAK */}
+        <div className="relative">
+          {/* Dekorasi Aksen Navy di belakang form */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-950/5 rounded-full blur-3xl"></div>
+
+          <div className="relative bg-white p-10 rounded-[2.5rem] shadow-2xl shadow-blue-950/10 border border-blue-50">
             {!isSent ? (
-              <form className="space-y-4" onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium mb-1">Nama Lengkap</label>
-                  <input required type="text" className="w-full p-3 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-slate-900 outline-none" placeholder="Masukkan nama..." />
+                  <label className="block text-xs font-black text-blue-950 uppercase tracking-widest mb-2 ml-1">Nama Lengkap</label>
+                  <input required type="text" placeholder="Contoh: Senasa" className="w-full p-4 rounded-2xl bg-slate-50 border border-transparent focus:border-blue-950 focus:bg-white outline-none transition-all text-sm font-medium" />
                 </div>
+
                 <div>
-                  <label className="block text-sm font-medium mb-1">Email</label>
-                  <input required type="email" className="w-full p-3 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-slate-900 outline-none" placeholder="email@anda.com" />
+                  <label className="block text-xs font-black text-blue-950 uppercase tracking-widest mb-2 ml-1">Pesan Kamu</label>
+                  <textarea
+                    required
+                    rows={4}
+                    placeholder="Mau tanya soal apa nih?"
+                    className="w-full p-4 rounded-2xl bg-slate-50 border border-transparent focus:border-blue-950 focus:bg-white outline-none transition-all text-sm font-medium resize-none"
+                  ></textarea>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1">Pesan</label>
-                  <textarea required rows={4} className="w-full p-3 rounded-xl bg-slate-100 border-none focus:ring-2 focus:ring-slate-900 outline-none" placeholder="Apa yang bisa kami bantu?"></textarea>
-                </div>
-                <button type="submit" className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition active:scale-95 shadow-lg shadow-slate-200">
-                  Kirim Sekarang
+
+                <button type="submit" className="w-full bg-blue-950 text-white font-black py-4 rounded-2xl hover:bg-blue-900 transition-all active:scale-[0.98] shadow-xl shadow-blue-950/20 tracking-widest text-xs uppercase">
+                  Kirim Pesan Sekarang
                 </button>
               </form>
             ) : (
-              // Tampilan setelah tombol diklik (Interaksi UI)
-              <div className="text-center py-12">
-                <div className="text-5xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-slate-900">Pesan Terkirim!</h3>
-                <p className="text-slate-500 mt-2">Terima kasih, tim KOSTIN akan segera menghubungi Anda.</p>
-                <button onClick={() => setIsSent(false)} className="mt-6 text-sm text-slate-900 font-semibold underline">
-                  Kirim pesan baru
+              // Tampilan Sukses (Interaksi Client Side)
+              <div className="py-12 text-center animate-in fade-in zoom-in duration-500">
+                <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center text-4xl mx-auto mb-6">✅</div>
+                <h3 className="text-2xl font-black text-blue-950 mb-2">Pesan Terkirim!</h3>
+                <p className="text-slate-500 text-sm font-medium leading-relaxed">
+                  Makasih ya! Admin KOSTIN bakal <br /> segera hubungi kamu lewat email atau WA.
+                </p>
+                <button onClick={() => setIsSent(false)} className="mt-8 text-xs font-black text-blue-950 underline tracking-widest uppercase">
+                  Kirim Pesan Lagi
                 </button>
               </div>
             )}
-          </div>
-
-          {/* Contact Info - Tetap sesuai desain asli teman kamu */}
-          <div className="flex flex-col justify-center">
-            <h2 className="text-3xl font-bold mb-4 text-slate-900">Hubungi Kami</h2>
-            <p className="text-slate-600 mb-8">Punya pertanyaan atau ingin menjadi mitra? Tim kami siap menjawab pesan Anda dalam 24 jam.</p>
-
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900 font-bold">📍</div>
-                <div>
-                  <p className="font-bold">Alamat Kantor</p>
-                  <p className="text-slate-500 text-sm">Bandung, Jawa Barat (Dekat ITENAS)</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900">📞</div>
-                <div>
-                  <p className="font-bold">WhatsApp</p>
-                  <p className="text-slate-500 text-sm">+62 812-3456-7890</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center text-slate-900">📧</div>
-                <div>
-                  <p className="font-bold">Email</p>
-                  <p className="text-slate-500 text-sm">support@kostin.id</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
