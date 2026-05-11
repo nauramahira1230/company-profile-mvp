@@ -10,19 +10,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className="scroll-smooth">
-      {/* overflow-x-hidden wajib biar gak bisa digeser ke samping kalau ada elemen kegedean */}
-      <body className="bg-white text-blue-950 antialiased font-sans overflow-x-hidden">
-        
+    <html 
+      lang="id" 
+      className="scroll-smooth" 
+      data-scroll-behavior="smooth"
+    >
+      <body 
+        className="bg-white text-blue-950 antialiased font-sans overflow-x-hidden"
+        suppressHydrationWarning
+      >
+        {/* Navbar tetap di atas */}
         <Navbar />
 
-        {/* Tambahin padding horizontal default (px-4) biar konten gak nempel ke pinggir HP */}
+        {/* Main content dengan padding top agar tidak tertutup Navbar fixed */}
         <main className="pt-16 min-h-screen w-full">
           {children}
         </main>
 
+        {/* Footer simpel & elegan */}
         <footer className="bg-blue-950 py-12 md:py-16 border-t border-blue-900/30">
-          {/* mx-auto dan px-6 bikin konten tetep di tengah dan punya jarak aman di pinggir */}
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-4">
             
             <div className="text-center md:text-left">
