@@ -9,13 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "@supabase/supabase-js": "^2.105.1",
     "cookies-next": "^6.1.1",
     "leaflet": "^1.9.4",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-leaflet": "^5.0.0"
+    "react-hook-form": "^7.76.0",
+    "react-leaflet": "^5.0.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

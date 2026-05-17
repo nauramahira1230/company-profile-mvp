@@ -8,18 +8,20 @@ export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const url = request.nextUrl.clone();
 
+  // Halaman yang bisa diakses publik tanpa perlu login
   const isPublicPage = pathname === '/' || pathname === '/login';
 
+  // 1. Jika BELUM login (tidak ada session)
   if (!session) {
     if (!isPublicPage) {
       url.pathname = '/login';
       return NextResponse.redirect(url);
     }
-
     return NextResponse.next();
   }
 
-    if (pathname.startsWith('/admin') && role !== 'admin') {
+  // 2. Jika SUDAH login, tapi user biasa coba-coba masuk ke /admin
+  if (pathname.startsWith('/admin') && role !== 'admin') {
     url.pathname = '/kostin';
     return NextResponse.redirect(url);
   }
@@ -28,5 +30,6 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // Melindungi seluruh halaman kecuali API, assets gambar, dan favicon
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
