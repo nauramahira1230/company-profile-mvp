@@ -79,7 +79,7 @@ export default async function TeamDetailPage({ params }: { params: Promise<{ slu
             </div>
             <div>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Division</p>
-                <p className="text-sm font-bold text-blue-950">Product Development</p>
+                <p className="text-sm font-bold text-blue-950">Web Dev UI/UX</p>
             </div>
         </div>
       </div>
