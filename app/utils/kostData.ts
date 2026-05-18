@@ -45,7 +45,7 @@ export const masterDataKost: Kost[] = [
     price: 1500000,
     tipe: "Campur",
     phone: "628123456789",
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&q=80",
+    image: "/images/testkost.jpg",
     gallery: ["https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=400"],
     description: "Dekat area kampus, fasilitas premium dan lengkap.",
     facilities: ["Kasur", "Lemari", "AC", "TV", "WiFi", "Kamar mandi dalam", "Water heater", "Dapur", "Laundry", "CCTV", "Security", "Smart lock", "Akses 24 jam", "Parkir motor", "Parkir mobil"],
