@@ -8,8 +8,8 @@ export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const url = request.nextUrl.clone();
 
-  // Halaman yang bisa diakses publik tanpa perlu login
-  const isPublicPage = pathname === '/' || pathname === '/login';
+  // FIX 1: Tambahkan '/register' (atau '/daftar') ke halaman publik agar tidak ditendang ke login
+  const isPublicPage = pathname === '/' || pathname === '/login' || pathname === '/register';
 
   // 1. Jika BELUM login (tidak ada session)
   if (!session) {
@@ -30,6 +30,6 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Melindungi seluruh halaman kecuali API, assets gambar, dan favicon
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  // FIX 2: Tambahkan '|images' agar folder foto publik kamu tidak dicegat oleh middleware
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images).*)'],
 };
