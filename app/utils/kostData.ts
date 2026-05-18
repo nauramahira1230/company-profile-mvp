@@ -27,7 +27,7 @@ export const masterDataKost: Kost[] = [
     coords: [-8.8149, 115.1583],
     price: 1500000,
     tipe: "Putra",
-    phone: "628123456789",
+    phone: "6281232003819",
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800",
     gallery: [
       "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=400",
