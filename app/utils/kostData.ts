@@ -31,7 +31,7 @@ export const masterDataKost: Kost[] = [
     tipe: "Campur",
     phone: "628123456789",
     image: "/images/kost1.jpeg",
-    gallery: ["/images/kamar1.jpeg", "/images/dapur.jpeg", "/images/wc1.jpeg", "/images/parkir1.jpeg"],
+    gallery: ["/images/kamar1.jpeg", "/images/dapur1.jpeg", "/images/wc1.jpeg", "/images/parkir1.jpeg"],
     description: "Kost nyaman strategis di area Buleleng, lingkungan tenang.",
     facilities: ["Kasur", "Lemari", "WiFi", "Dapur", "CCTV", "Akses 24 jam", "Parkir motor"],
     testimonials: [{ name: "Budi", comment: "Tempat bersih dan tenang.", rating: 5 }],
