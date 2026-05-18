@@ -30,11 +30,8 @@ export const masterDataKost: Kost[] = [
     price: 850000,
     tipe: "Campur",
     phone: "628123456789",
-    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=80",
-    gallery: [
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=400",
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=400"
-    ],
+    image: "/images/kost1.jpeg",
+    gallery: ["/images/kamar1.jpeg", "/images/dapur.jpeg", "/images/wc1.jpeg", "/images/parkir1.jpeg"],
     description: "Kost nyaman strategis di area Buleleng, lingkungan tenang.",
     facilities: ["Kasur", "Lemari", "WiFi", "Dapur", "CCTV", "Akses 24 jam", "Parkir motor"],
     testimonials: [{ name: "Budi", comment: "Tempat bersih dan tenang.", rating: 5 }],
@@ -64,15 +61,12 @@ export const masterDataKost: Kost[] = [
     tipe: "Putra",
     phone: "6281232003819",
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800",
-    gallery: [
-      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=400",
-      "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=400"
-    ],
+    gallery: ["https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=400", "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=400"],
     description: "Kost nyaman khusus putra dengan harga terjangkau di Denpasar Timur, lokasi sangat dekat dengan kampus UNUD.",
     facilities: ["Kasur", "Lemari", "WiFi 100Mbps", "AC", "K. Mandi Dalam", "Mushola", "Akses 24 jam", "Parkir motor", "Area sepeda"],
     testimonials: [
       { name: "Budi", comment: "WiFi kenceng!", rating: 5 },
-      { name: "Andi", comment: "Harga bersahabat.", rating: 4 }
+      { name: "Andi", comment: "Harga bersahabat.", rating: 4 },
     ],
   },
   {
